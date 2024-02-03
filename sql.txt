@@ -1,0 +1,5 @@
+create table user(id varchar(50), name varchar(50), email varchar(50) unique, password varchar(20), primary key(id));
+
+create table client(uid varchar(50), client_id varchar(50), name varchar(50), phone varchar(15), email varchar(50), primary key(client_id), foreign key (uid) references user(id) on delete cascade);
+
+create table invoice(uid varchar(50), invoice_id varchar(50), client_id varchar(50), client varchar(50), issue_date date, due_date date, amount int, status varchar(5), check (status  in ('paid', 'due')), primary key(invoice_id),foreign key(uid) references user(id) on delete cascade, foreign key(client_id) references client(client_id) on delete cascade);
